@@ -1,10 +1,6 @@
 fastapi
 uvicorn
-sqlalchemy
-passlib[bcrypt]
-python-jose[cryptography]
-pydantic
-pydantic[email]
 joblib
 scikit-learn
 textblob
+python-multipart
