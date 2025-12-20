@@ -1,31 +1,36 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List
+from pathlib import Path
 import joblib
 import csv
 import io
-from pathlib import Path
 from textblob import TextBlob
 
 # ---------------- APP INIT ----------------
 app = FastAPI(title="AI Student Risk Prediction API")
 
-from fastapi.middleware.cors import CORSMiddleware
-
+# ---------------- CORS (FINAL & CORRECT) ----------------
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:8080",
         "http://localhost:8081",
-        "https://ai-student-risk-prediction-hnu1oaox3.vercel.app",  # your vercel URL
-        "https://ai-student-risk-prediction.vercel.app",  
-        "https://ai-student-risk-prediction-bqodygnye.vercel.app",# optional prod domain
+        "https://ai-student-risk-prediction-hnu1oaox3.vercel.app",
+        "https://ai-student-risk-prediction.vercel.app",
+        "https://ai-student-risk-prediction-bqodygnye.vercel.app",
     ],
-    allow_credentials=True,
+    allow_credentials=False,   # IMPORTANT (no auth/cookies used)
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# ---------------- GLOBAL OPTIONS HANDLER ----------------
+# This FIXES the CORS preflight 400 error
+@app.options("/{path:path}")
+def options_handler(path: str):
+    return {}
 
 # ---------------- LOAD MODEL ----------------
 MODEL_PATH = Path(__file__).parent / "best_model.pkl"
@@ -153,4 +158,7 @@ def csv_upload(file: UploadFile = File(...)):
 # ---------------- HEALTH CHECK ----------------
 @app.get("/")
 def root():
-    return {"status": "running", "message": "AI Student Risk Prediction API"}
+    return {
+        "status": "running",
+        "message": "AI Student Risk Prediction API"
+    }
