@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://ai-student-risk-backend.onrender.com/";
+const API_BASE_URL = "https://ai-student-risk-backend.onrender.com";
 
 // Log API configuration on module load
 console.log(`API configured to: ${API_BASE_URL}`);
