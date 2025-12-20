@@ -18,7 +18,8 @@ app.add_middleware(
         "http://localhost:8080",
         "http://localhost:8081",
         "https://ai-student-risk-prediction-hnu1oaox3.vercel.app",  # your vercel URL
-        "https://ai-student-risk-prediction.vercel.app",          # optional prod domain
+        "https://ai-student-risk-prediction.vercel.app",  
+        "https://ai-student-risk-prediction-bqodygnye.vercel.app",# optional prod domain
     ],
     allow_credentials=True,
     allow_methods=["*"],
