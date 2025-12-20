@@ -15,13 +15,16 @@ from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "http://localhost:8080",
         "http://localhost:8081",
-        "http://localhost:8080"
+        "https://ai-student-risk-prediction-hnu1oaox3.vercel.app",  # your vercel URL
+        "https://ai-student-risk-prediction.vercel.app",          # optional prod domain
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # ---------------- LOAD MODEL ----------------
 MODEL_PATH = Path(__file__).parent / "best_model.pkl"
