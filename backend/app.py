@@ -23,9 +23,6 @@ app.add_middleware(
 
 # ---------------- GLOBAL OPTIONS HANDLER ----------------
 # This FIXES the CORS preflight 400 error
-@app.options("/{path:path}")
-def options_handler(path: str):
-    return {}
 
 # ---------------- LOAD MODEL ----------------
 MODEL_PATH = Path(__file__).parent / "best_model.pkl"
