@@ -14,17 +14,12 @@ app = FastAPI(title="AI Student Risk Prediction API")
 # ---------------- CORS (FINAL & CORRECT) ----------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:8080",
-        "http://localhost:8081",
-        "https://ai-student-risk-prediction-hnu1oaox3.vercel.app",
-        "https://ai-student-risk-prediction.vercel.app",
-        "https://ai-student-risk-prediction-bqodygnye.vercel.app",
-    ],
-    allow_credentials=False,   # IMPORTANT (no auth/cookies used)
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # ---------------- GLOBAL OPTIONS HANDLER ----------------
 # This FIXES the CORS preflight 400 error
